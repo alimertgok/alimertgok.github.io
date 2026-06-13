@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ali Mert Gok</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0a0b0a;
+    --bg2: #101210;
+    --card: #131613;
+    --line: rgba(255,255,255,0.08);
+    --line-strong: rgba(255,255,255,0.16);
+    --text: #f2f3ef;
+    --muted: #8c9088;
+    --faint: #565a52;
+    --lime: #4d9fff;
+    --display: 'Space Grotesk', sans-serif;
+    --sans: 'Inter', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: var(--sans); font-size: 15px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+  ::selection { background: var(--lime); color: #0a0b0a; }
+  a { color: inherit; text-decoration: none; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.4rem max(2rem, calc((100vw - 1080px)/2));
+    mix-blend-mode: difference;
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; font-weight: 500; color: #fff; }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a { font-family: var(--mono); font-size: 12px; color: #fff; opacity: 0.7; transition: opacity 0.2s; }
+  .nav-links a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 6rem 0 3rem; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em;
+    color: var(--lime); margin-bottom: 1.5rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .role-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); display: inline-block; flex-shrink: 0; }
+  .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); animation: pulse 2s infinite; display: inline-block; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .hero h1 {
+    font-family: var(--display); font-weight: 700;
+    font-size: clamp(3.2rem, 13vw, 9.5rem); line-height: 0.86;
+    letter-spacing: -0.03em; text-transform: uppercase;
+  }
+  .hero h1 .stroke {
+    -webkit-text-stroke: 1.5px var(--text); color: transparent;
+  }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; align-items: baseline;
+    margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line);
+  }
+  .hero-role { font-size: 1.1rem; font-weight: 500; display: flex; align-items: center; gap: 10px; color: var(--lime); animation: pulse 4s infinite; }
+  .hero-loc { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  .hero-actions { display: flex; gap: 0.8rem; margin-left: auto; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    padding: 11px 20px; border-radius: 100px; font-size: 13px; font-weight: 500;
+    font-family: var(--sans); transition: all 0.2s; cursor: pointer; border: 1px solid var(--line-strong);
+  }
+  .btn:hover { border-color: var(--lime); color: var(--lime); }
+  .btn-primary { background: var(--lime); color: #0a0b0a; border-color: var(--lime); }
+  .btn-primary:hover { background: #74b4ff; color: #0a0b0a; transform: translateY(-1px); }
+
+  /* STATEMENT */
+  .statement { padding: 7rem 0; }
+  .statement p {
+    font-family: var(--display); font-weight: 500;
+    font-size: clamp(1.6rem, 4.5vw, 3.2rem); line-height: 1.18;
+    letter-spacing: -0.02em; max-width: 16ch;
+  }
+  .statement p .hl { color: var(--lime); }
+  .statement .by { font-family: var(--mono); font-size: 12px; color: var(--faint); margin-top: 2rem; }
+
+  /* BIG SECTION HEADER */
+  .bighead { padding: 2rem 0 2.5rem; }
+  .bighead .num { font-family: var(--mono); font-size: 13px; color: var(--lime); margin-bottom: 0.5rem; }
+  .bighead h2 {
+    font-family: var(--display); font-weight: 700; text-transform: uppercase;
+    font-size: clamp(2.8rem, 9vw, 7rem); line-height: 0.9; letter-spacing: -0.03em;
+  }
+  .bighead h2 .stroke { -webkit-text-stroke: 1.5px var(--text); color: transparent; }
+
+  section { padding-bottom: 5rem; }
+
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* WORK */
+  .proj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .pcard {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 1.8rem; display: flex; flex-direction: column; min-height: 220px;
+    transition: border-color 0.25s, transform 0.25s, background 0.25s; cursor: pointer;
+  }
+  .pcard:hover { border-color: var(--line-strong); background: var(--bg2); transform: translateY(-4px); }
+  .pcard.wide { grid-column: span 2; min-height: 0; }
+  .pcard-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: auto; }
+  .pcat { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--lime); }
+  .parrow { color: var(--faint); font-size: 18px; transition: color 0.2s, transform 0.2s; }
+  .pcard:hover .parrow { color: var(--lime); transform: translate(3px,-3px); }
+  .pcard h3 { font-family: var(--display); font-weight: 600; font-size: 1.5rem; margin: 1.5rem 0 0.5rem; letter-spacing: -0.01em; }
+  .pcard p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 1.2rem; }
+  .tag { font-family: var(--mono); font-size: 10.5px; color: var(--muted); border: 1px solid var(--line); border-radius: 6px; padding: 3px 8px; }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3.5rem; align-items: start; }
+  .about p { color: var(--muted); font-size: 17px; line-height: 1.8; }
+  .about p + p { margin-top: 1.1rem; }
+  .about strong { color: var(--text); font-weight: 500; }
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .stat { border: 1px solid var(--line); border-radius: 14px; padding: 1.3rem 1.4rem; }
+  .stat .n { font-family: var(--display); font-weight: 700; font-size: 2.4rem; line-height: 1; color: var(--lime); }
+  .stat .l { font-size: 12.5px; color: var(--muted); margin-top: 8px; }
+
+  /* EXPERIENCE */
+  .xp { border-top: 1px solid var(--line); padding: 1.5rem 0; display: grid; grid-template-columns: 160px 1fr auto; gap: 1.5rem; align-items: baseline; transition: padding-left 0.25s; }
+  .xp:last-child { border-bottom: 1px solid var(--line); }
+  .xp:hover { padding-left: 14px; }
+  .xp-date { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+  .xp-role { font-family: var(--display); font-weight: 500; font-size: 1.15rem; }
+  .xp-org { font-size: 13px; color: var(--lime); margin-top: 2px; }
+  .xp-desc { font-size: 13.5px; color: var(--muted); margin-top: 6px; max-width: 52ch; }
+  .xp-place { font-family: var(--mono); font-size: 11px; color: var(--faint); white-space: nowrap; }
+
+  /* EDU + PUB */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5rem; }
+  .blk-t { font-family: var(--mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--lime); margin-bottom: 1.5rem; }
+  .ed { margin-bottom: 1.5rem; }
+  .ed-d { font-family: var(--display); font-weight: 500; font-size: 1.1rem; }
+  .ed-s { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .ed-m { font-family: var(--mono); font-size: 11px; color: var(--faint); margin-top: 4px; }
+  .pub { padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .pub:last-child { border-bottom: none; }
+  .pub-t { font-size: 14px; font-weight: 500; line-height: 1.5; font-family: var(--sans); }
+
+  /* SKILLS */
+  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-cat { font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 5px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip { font-size: 13px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; transition: border-color 0.2s; }
+  .chip:hover { border-color: var(--lime); }
+
+  /* ACHIEVEMENTS */
+  .ach-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .ach { border: 1px solid var(--line); border-radius: 100px; padding: 0.6rem 1.1rem; font-size: 13.5px; display: flex; gap: 9px; align-items: center; }
+  .ach .s { color: var(--lime); }
+  .ach.feat { background: var(--lime); border-color: var(--lime); color: #0a0b0a; font-weight: 500; }
+  .ach.feat .s { color: #0a0b0a; }
+
+  /* CONTACT */
+  .contact { padding: 6rem 0; border-top: 1px solid var(--line); }
+  .contact h2 { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(2.8rem, 11vw, 8rem); line-height: 0.88; letter-spacing: -0.03em; }
+  .contact h2 .hl { color: var(--lime); }
+  .contact-sub { color: var(--muted); margin: 1.5rem 0 2rem; font-size: 1.05rem; max-width: 40ch; }
+  .contact-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+
+  footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-family: var(--mono); font-size: 11px; color: var(--faint); }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 1.3rem; }
+    .nav-links { display: none; }
+    .hero-actions { margin-left: 0; width: 100%; }
+    .about, .two-col { grid-template-columns: 1fr; gap: 2rem; }
+    .proj-grid { grid-template-columns: 1fr; }
+    .pcard.wide { grid-column: span 1; }
+    .xp { grid-template-columns: 1fr; gap: 0.3rem; }
+    .xp-place { display: none; }
+    .skill-row { grid-template-columns: 1fr; gap: 0.6rem; }
+    .statement { padding: 4rem 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-eyebrow .dot, .hero-role { animation: none; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">AMG ©2026</div>
+  <ul class="nav-links">
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>Ali Mert<br/><span class="stroke">Gok</span></h1>
+    <div class="hero-meta">
+      <div>
+        <div class="hero-role"><span class="role-dot"></span> AI / Software Developer · Graduate Research Assistant</div>
+        <div class="hero-loc">MS Computer Science · VCU · Richmond, VA</div>
+      </div>
+      <div class="hero-actions">
+        <a href="#work" class="btn btn-primary">View work →</a>
+        <a href="mailto:alimertgk@gmail.com" class="btn">Contact</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- STATEMENT -->
+  <section class="statement reveal">
+    <p>Building <span class="hl">intelligent</span> systems — from cardiac devices to EdTech and agentic AI.</p>
+    <div class="by">// Microsoft alum · 2× startup builder · published researcher</div>
+  </section>
+
+  <!-- WORK -->
+  <section id="work">
+    <div class="bighead reveal">
+      <div class="num">01 / Selected work</div>
+      <h2>Work</h2>
+    </div>
+    <div class="proj-grid reveal">
+
+      <div class="pcard wide">
+        <div class="pcard-top"><span class="pcat">Health-tech · ITU Çekirdek</span><span class="parrow">↗</span></div>
+        <h3>CardioPress</h3>
+        <p>An AI-powered chest compression device with real-time ECG monitoring, built as a health-tech startup inside the ITU Çekirdek incubator. I lead the engineering — embedded AI feedback, signal processing, and the device software.</p>
+        <div class="tags"><span class="tag">Embedded AI</span><span class="tag">ECG</span><span class="tag">Python</span><span class="tag">Signal Processing</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">EdTech · SaaS</span><span class="parrow">↗</span></div>
+        <h3>Concei</h3>
+        <p>AI-powered EdTech startup that streamlines workflows and automates admin tasks for teachers. Co-founder &amp; developer.</p>
+        <div class="tags"><span class="tag">FastAPI</span><span class="tag">Flutter</span><span class="tag">Node.js</span><span class="tag">Docker</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">LLM · 2nd Place</span><span class="parrow">↗</span></div>
+        <h3>Survivor AI</h3>
+        <p>Offline AI chatbot built at the Horizon AI Hackathon 2025 — 2nd place out of 200+ participants.</p>
+        <div class="tags"><span class="tag">LLM</span><span class="tag">Offline</span><span class="tag">Python</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">Computer Vision</span><span class="parrow">↗</span></div>
+        <h3>Sign Language Detection</h3>
+        <p>Real-time sign language detection using YOLOv8 and Roboflow, built during my Microsoft internship.</p>
+        <div class="tags"><span class="tag">YOLOv8</span><span class="tag">Roboflow</span><span class="tag">Python</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">Deep Learning</span><span class="parrow">↗</span></div>
+        <h3>Stock Price Prediction</h3>
+        <p>LSTM time-series model hitting 90%+ accuracy, built with PyTorch and Kaggle data at Microsoft.</p>
+        <div class="tags"><span class="tag">PyTorch</span><span class="tag">LSTM</span><span class="tag">Kaggle</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">Computer Vision · Mobile</span><span class="parrow">↗</span></div>
+        <h3>Velvet — Valet App</h3>
+        <p>Senior design project: a valet mobile app using computer vision for vehicle and plate detection.</p>
+        <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Flutter</span></div>
+      </div>
+
+      <div class="pcard">
+        <div class="pcard-top"><span class="pcat">Logic Programming</span><span class="parrow">↗</span></div>
+        <h3>Sudoku &amp; HEX</h3>
+        <p>A Sudoku solver and a Hex board game, both written in Prolog — constraint logic and search.</p>
+        <div class="tags"><span class="tag">Prolog</span><span class="tag">SWI-Prolog</span></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="bighead reveal">
+      <div class="num">02 / Background</div>
+      <h2><span class="stroke">About</span></h2>
+    </div>
+    <div class="about reveal">
+      <div>
+        <p>I'm a Computer Engineer and AI/Software Developer pursuing my MS in Computer Science at <strong>Virginia Commonwealth University</strong>, where I'm a Graduate Research Assistant working on multimodal emotion recognition with the Meta Quest 3.</p>
+        <p>I lead engineering at <strong>CardioPress</strong>, incubated at ITU Çekirdek, and co-founded <strong>Concei</strong>, an EdTech SaaS platform. Previously an AI Developer at <strong>Microsoft Turkey</strong>, with an Erasmus exchange at ISEL Lisbon. My interests span agentic AI, network security, and applied ML.</p>
+      </div>
+      <div class="stats">
+        <div class="stat"><div class="n">3.68</div><div class="l">BSc GPA · ranked 2nd in faculty</div></div>
+        <div class="stat"><div class="n">2nd</div><div class="l">Horizon AI Hackathon 2025</div></div>
+        <div class="stat"><div class="n">2×</div><div class="l">Startup builder</div></div>
+        <div class="stat"><div class="n">C1</div><div class="l">English · native Turkish</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="bighead reveal">
+      <div class="num">03 / Track record</div>
+      <h2>Experience</h2>
+    </div>
+    <div class="reveal">
+      <div class="xp"><div class="xp-date">May 2026 — Now</div><div><div class="xp-role">Graduate Research Assistant</div><div class="xp-org">Virginia Commonwealth University</div><div class="xp-desc">Researching multimodal emotion recognition on Meta Quest 3.</div></div><div class="xp-place">Richmond, VA</div></div>
+      <div class="xp"><div class="xp-date">Sep 2024 — Now</div><div><div class="xp-role">Lead Engineer</div><div class="xp-org">CardioPress · ITU Çekirdek</div><div class="xp-desc">AI-powered chest compression device with real-time ECG monitoring.</div></div><div class="xp-place">Istanbul</div></div>
+      <div class="xp"><div class="xp-date">Jan 2025 — Now</div><div><div class="xp-role">Co-founder &amp; Developer</div><div class="xp-org">Concei</div><div class="xp-desc">EdTech startup automating workflows and admin tasks for teachers.</div></div><div class="xp-place">Istanbul</div></div>
+      <div class="xp"><div class="xp-date">Jul — Aug 2024</div><div><div class="xp-role">AI Developer Intern</div><div class="xp-org">Microsoft Turkey</div><div class="xp-desc">90%+ accuracy LSTM stock prediction; YOLOv8 sign language detection.</div></div><div class="xp-place">Remote</div></div>
+      <div class="xp"><div class="xp-date">Oct 2023 — May 2025</div><div><div class="xp-role">Student Assistant</div><div class="xp-org">MEF University</div><div class="xp-desc">Supported students in programming and digital systems in lectures and labs.</div></div><div class="xp-place">Istanbul</div></div>
+      <div class="xp"><div class="xp-date">Jul 2024</div><div><div class="xp-role">IT Summer Intern</div><div class="xp-org">Yasa Holding</div><div class="xp-desc">Auditing, monitoring, and technical support for network and security systems.</div></div><div class="xp-place">Istanbul</div></div>
+      <div class="xp"><div class="xp-date">Jun — Sep 2022</div><div><div class="xp-role">Summer Intern</div><div class="xp-org">General Consulate of Panama</div><div class="xp-desc">Tested computer materials and managed Seaman's book records.</div></div><div class="xp-place">Istanbul</div></div>
+      <div class="xp"><div class="xp-date">Mar — Jun 2022</div><div><div class="xp-role">OGV OPS Team Member</div><div class="xp-org">AIESEC Turkey</div><div class="xp-desc">Organized international volunteer projects and cultural exchange.</div></div><div class="xp-place">Hybrid</div></div>
+    </div>
+  </section>
+
+  <!-- EDU + PUB -->
+  <section>
+    <div class="bighead reveal">
+      <div class="num">04 / Education &amp; research</div>
+      <h2>Education<br/><span class="stroke">&amp; Research</span></h2>
+    </div>
+    <div class="two-col reveal">
+      <div>
+        <div class="blk-t">Education</div>
+        <div class="ed"><div class="ed-d">MSc Computer Science</div><div class="ed-s">Virginia Commonwealth University · Richmond, VA</div><div class="ed-m">Jan 2026 — 2027</div></div>
+        <div class="ed"><div class="ed-d">BSc Computer Science</div><div class="ed-s">MEF University · GPA 3.68, High Honour, ranked 2nd</div><div class="ed-m">Sep 2020 — Jun 2025</div></div>
+        <div class="ed"><div class="ed-d">Erasmus Exchange</div><div class="ed-s">ISEL · Lisbon, Portugal</div><div class="ed-m">Feb — Jul 2023</div></div>
+      </div>
+      <div>
+        <div class="blk-t">Publications</div>
+        <div class="pub"><div class="pub-t">Securing the Invisible Network: Protocol Vulnerabilities and Defenses in Autonomous Machine-to-Machine AI Communication</div></div>
+        <div class="pub"><div class="pub-t">Detection of the Most Prominent Plate or Vehicle</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="bighead reveal">
+      <div class="num">05 / Toolkit</div>
+      <h2>Skills</h2>
+    </div>
+    <div class="reveal">
+      <div class="skill-row"><div class="skill-cat">Programming</div><div class="chips"><span class="chip">Python</span><span class="chip">C</span><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Prolog</span><span class="chip">SQL</span><span class="chip">Flutter</span><span class="chip">Node.js</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Frameworks</div><div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Pydantic</span><span class="chip">Firebase</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Architecture</div><div class="chips"><span class="chip">OOP</span><span class="chip">MVC</span><span class="chip">MVVM</span><span class="chip">Agile</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Tools</div><div class="chips"><span class="chip">Docker</span><span class="chip">IntelliJ</span><span class="chip">PyCharm</span><span class="chip">Android Studio</span><span class="chip">VS Code</span><span class="chip">Google Colab</span><span class="chip">SWI-Prolog</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Collaboration</div><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">JIRA</span><span class="chip">Postman</span><span class="chip">Bruno</span></div></div>
+      <div class="skill-row"><div class="skill-cat">Languages</div><div class="chips"><span class="chip">English (C1)</span><span class="chip">Turkish (Native)</span><span class="chip">Portuguese (Beginner)</span></div></div>
+    </div>
+    <div style="margin-top:2.5rem;" class="reveal">
+      <div class="ach-list">
+        <div class="ach feat"><span class="s">★</span> Horizon AI Hackathon 2025 — 2nd place / 200+ entrants</div>
+        <div class="ach"><span class="s">★</span> RAM Racing Formula SAE — VCU</div>
+        <div class="ach"><span class="s">★</span> Volleyball, middle player</div>
+        <div class="ach"><span class="s">★</span> 100m first place medal</div>
+        <div class="ach"><span class="s">★</span> Kalamış Rowing</div>
+        <div class="ach"><span class="s">★</span> VCU Big Event — community service volunteer</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="contact reveal">
+    <div class="contact-links">
+      <a href="mailto:alimertgk@gmail.com" class="btn btn-primary">alimertgk@gmail.com</a>
+      <a href="https://linkedin.com/in/alimertgok" target="_blank" class="btn">LinkedIn</a>
+      <a href="https://github.com/alimertgok" target="_blank" class="btn">GitHub</a>
+      <a href="https://medium.com/@alimertgok" target="_blank" class="btn">Medium</a>
+    </div>
+  </section>
+
+</div>
+
+<footer class="wrap">
+  <span>© 2026 Ali Mert Gok</span>
+  <span>Richmond, VA</span>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
