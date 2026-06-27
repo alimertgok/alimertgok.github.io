@@ -63,9 +63,7 @@
     font-size: clamp(3.2rem, 13vw, 9.5rem); line-height: 0.86;
     letter-spacing: -0.03em; text-transform: uppercase;
   }
-  .hero h1 .stroke {
-    -webkit-text-stroke: 1.5px var(--text); color: transparent;
-  }
+  .hero h1 .stroke { -webkit-text-stroke: 1.5px var(--text); color: transparent; }
   .hero-meta {
     display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; align-items: baseline;
     margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line);
@@ -158,9 +156,15 @@
   .pub-t a:hover { color: var(--lime); border-color: var(--lime); }
 
   /* SKILLS */
-  .skill-row { display: grid; grid-template-columns: 150px 1fr; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .skill-row {
+    display: grid; grid-template-columns: 150px 1fr;
+    gap: 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+    align-items: start;
+  }
   .skill-row:last-child { border-bottom: none; }
   .skill-cat { font-family: var(--mono); font-size: 12px; color: var(--faint); padding-top: 5px; }
+  .skill-body { display: flex; flex-direction: column; gap: 6px; }
+  .skill-narrative { font-size: 12.5px; color: var(--muted); font-style: italic; }
   .chips { display: flex; flex-wrap: wrap; gap: 8px; }
   .chip { font-size: 13px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; transition: border-color 0.2s; }
   .chip:hover { border-color: var(--lime); }
@@ -190,7 +194,7 @@
     .pcard.wide { grid-column: span 1; }
     .xp { grid-template-columns: 1fr; gap: 0.3rem; }
     .xp-place { display: none; }
-    .skill-row { grid-template-columns: 1fr; gap: 0.6rem; }
+    .skill-row { grid-template-columns: 1fr; gap: 0.4rem; }
     .statement { padding: 4rem 0; }
   }
   @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; transition: none; } .hero-eyebrow .dot, .hero-role { animation: none; } }
@@ -281,13 +285,6 @@
         <div class="tags"><span class="tag">Computer Vision</span><span class="tag">Flutter</span></div>
       </div>
 
-      <div class="pcard">
-        <div class="pcard-top"><span class="pcat">Logic Programming</span><span class="parrow">↗</span></div>
-        <h3>Sudoku &amp; HEX</h3>
-        <p>A Sudoku solver and a Hex board game, both written in Prolog — constraint logic and search.</p>
-        <div class="tags"><span class="tag">Prolog</span><span class="tag">SWI-Prolog</span></div>
-      </div>
-
     </div>
   </section>
 
@@ -357,13 +354,68 @@
       <h2>Skills</h2>
     </div>
     <div class="reveal">
-      <div class="skill-row"><div class="skill-cat">Programming</div><div class="chips"><span class="chip">Python</span><span class="chip">C</span><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">Prolog</span><span class="chip">SQL</span><span class="chip">Flutter</span><span class="chip">Node.js</span></div></div>
-      <div class="skill-row"><div class="skill-cat">Frameworks</div><div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Pydantic</span><span class="chip">Firebase</span></div></div>
-      <div class="skill-row"><div class="skill-cat">Architecture</div><div class="chips"><span class="chip">OOP</span><span class="chip">MVC</span><span class="chip">MVVM</span><span class="chip">Agile</span></div></div>
-      <div class="skill-row"><div class="skill-cat">Tools</div><div class="chips"><span class="chip">Docker</span><span class="chip">IntelliJ</span><span class="chip">PyCharm</span><span class="chip">Android Studio</span><span class="chip">VS Code</span><span class="chip">Google Colab</span><span class="chip">SWI-Prolog</span></div></div>
-      <div class="skill-row"><div class="skill-cat">Collaboration</div><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">JIRA</span><span class="chip">Postman</span><span class="chip">Bruno</span></div></div>
-      <div class="skill-row"><div class="skill-cat">Languages</div><div class="chips"><span class="chip">English (C1)</span><span class="chip">Turkish (Native)</span><span class="chip">Portuguese (Beginner)</span></div></div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Programming</div>
+        <div class="skill-body">
+          <div class="chips"><span class="chip">Python</span><span class="chip">C</span><span class="chip">C#</span><span class="chip">Kotlin</span><span class="chip">Java</span><span class="chip">SQL</span><span class="chip">PostgreSQL</span><span class="chip">MySQL</span><span class="chip">Flutter</span><span class="chip">Node.js</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">MongoDB</span><span class="chip">Redis</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">AI / ML</div>
+        <div class="skill-body">
+          <div class="skill-narrative">Multimodal emotion recognition, computer vision, time-series forecasting</div>
+          <div class="chips"><span class="chip">PyTorch</span><span class="chip">YOLOv8</span><span class="chip">scikit-learn</span><span class="chip">OpenCV</span><span class="chip">OCR</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">XR / VR</div>
+        <div class="skill-body">
+          <div class="skill-narrative">Eye/face/hand tracking, XR signal logging, immersive app development</div>
+          <div class="chips"><span class="chip">Meta Quest Pro</span><span class="chip">Unity XR</span><span class="chip">OpenXR</span><span class="chip">Meta XR SDK</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Security</div>
+        <div class="skill-body">
+          <div class="skill-narrative">Protocol vulnerability research, network analysis, adversarial ML</div>
+          <div class="chips"><span class="chip">TLS/SSL</span><span class="chip">Wireshark</span><span class="chip">iptables</span><span class="chip">MCP/A2A Security</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Frameworks</div>
+        <div class="skill-body">
+          <div class="chips"><span class="chip">FastAPI</span><span class="chip">SQLAlchemy</span><span class="chip">Pydantic</span><span class="chip">Firebase</span><span class="chip">Express.js</span><span class="chip">BLoC</span><span class="chip">SciPy</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Architecture</div>
+        <div class="skill-body">
+          <div class="chips"><span class="chip">OOP</span><span class="chip">MVC</span><span class="chip">MVVM</span><span class="chip">Agile</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Tools</div>
+        <div class="skill-body">
+          <div class="chips"><span class="chip">Docker</span><span class="chip">Unity Hub</span><span class="chip">Meta Quest Link</span><span class="chip">Android SDK/NDK</span><span class="chip">OpenJDK</span><span class="chip">Unity Recorder</span><span class="chip">IntelliJ</span><span class="chip">PyCharm</span><span class="chip">Android Studio</span><span class="chip">VS Code</span><span class="chip">Google Colab</span><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">JIRA</span><span class="chip">Postman</span><span class="chip">Bruno</span><span class="chip">Streamlit</span><span class="chip">Jupyter Notebook</span><span class="chip">Kaggle</span></div>
+        </div>
+      </div>
+
+      <div class="skill-row">
+        <div class="skill-cat">Languages</div>
+        <div class="skill-body">
+          <div class="chips"><span class="chip">English (C1)</span><span class="chip">Turkish (Native)</span><span class="chip">Portuguese (Beginner)</span></div>
+        </div>
+      </div>
+
     </div>
+
     <div style="margin-top:2.5rem;" class="reveal">
       <div class="ach-list">
         <div class="ach feat"><span class="s">★</span> Horizon AI Hackathon 2025 — 2nd place / 200+ entrants</div>
